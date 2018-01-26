@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# A shell countdown
+
 clear
 filename=$(date '+%Y/%m/%d %H:%M:%S')
 echo $filename

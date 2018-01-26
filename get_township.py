@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# Map latitude and longitude as township administrative region
+
 import numpy as np
 import pandas as pd
 import requests
