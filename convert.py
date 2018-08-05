@@ -14,7 +14,6 @@ def save_to_file(f_name, contents):
 
 def read_csv(path):
 
-    # noinspection PyBroadException
     try:
         df = pd.read_csv(path, dtype=str)
         return df
@@ -23,7 +22,6 @@ def read_csv(path):
 
 
 def read_xls(path):
-    # noinspection PyBroadException
     try:
         df = pd.read_excel(path, dtype=str)
         return df
@@ -32,7 +30,6 @@ def read_xls(path):
 
 
 def read_xml(path):
-    # noinspection PyBroadException
     try:
         tree = ElementTree.parse(path)
         root = tree.getroot()
@@ -46,7 +43,6 @@ def read_xml(path):
 
 
 def read_txt(path):
-    # noinspection PyBroadException
     try:
         df = pd.read_table(path,sep=',')
         return df
@@ -55,7 +51,6 @@ def read_txt(path):
 
 
 def convert_csv(df, path, filename):
-    # noinspection PyBroadException
     try:
         path_final = path + filename + '.csv'
         df.to_csv(path_final, sep=',', index=None)
@@ -65,7 +60,6 @@ def convert_csv(df, path, filename):
 
 
 def convert_xlsx(df, path, filename):
-    # noinspection PyBroadException
     try:
         path_final = path + filename + '.xlsx'
         df.to_excel(path_final, index=None)
@@ -75,7 +69,6 @@ def convert_xlsx(df, path, filename):
 
 
 def convert_xls(df, path, filename):
-    # noinspection PyBroadException
     try:
         path_final = path + filename + '.xls'
         df.to_excel(path_final, index=None)
@@ -85,7 +78,6 @@ def convert_xls(df, path, filename):
 
 
 def convert_xml(df, path, filename):
-    # noinspection PyBroadException
     try:
         path_final = path + filename + '.xml'
         df_dict = df.to_dict(orient='list')
@@ -98,7 +90,6 @@ def convert_xml(df, path, filename):
 
 
 def convert_txt(df, path, filename):
-    # noinspection PyBroadException
     try:
         path_final = path + filename + '.txt'
         df.to_csv(path_final, sep=',', index=None)
@@ -108,7 +99,6 @@ def convert_txt(df, path, filename):
 
 
 def copy_to_target(source_path, target_path):
-    # noinspection PyBroadException
     try:
         shutil.copy(source_path, target_path)
         return 1
@@ -117,9 +107,16 @@ def copy_to_target(source_path, target_path):
 
 
 if __name__ == '__main__':
-    path_source = sys.argv[1]
-    format_target = sys.argv[2]
-    path_target = sys.argv[3]
+
+    """
+    support xml, txt, csv, xls and xlsx mutual conversion
+    
+    """
+
+    path_source = sys.argv[1]       # source file path, e.g. /user/filename.txt
+    format_target = sys.argv[2]     # target format, e.g. xml
+    path_target = sys.argv[3]       # target folder path, e.g. /user/file/
+
     index_point = path_source.rfind('.')
     index_split = path_source.rfind('/')
     format_source = path_source[index_point + 1:]
